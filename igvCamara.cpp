@@ -176,3 +176,28 @@ GLdouble igvCamara::getZfar() const {
 void igvCamara::setZfar(GLdouble zfar) {
     igvCamara::zfar = zfar;
 }
+
+void igvCamara::setPerspectiva() {
+    setTipo(IGV_PERSPECTIVA);
+    set(igvPunto3D(3, 3, 3), igvPunto3D(0, 0, 0), igvPunto3D(0, 1, 0));
+    aplicar();
+}
+
+void igvCamara::setPlanta() {
+    setTipo(IGV_PARALELA);
+    set(igvPunto3D(0, 5, 0), igvPunto3D(0, 0, 0), igvPunto3D(1, 0, 0));
+    aplicar();
+}
+
+void igvCamara::setPerfil() {
+    setTipo(IGV_PARALELA);
+    set(igvPunto3D(5, 0, 0), igvPunto3D(0, 0, 0), igvPunto3D(0, 1, 0));
+    aplicar();
+}
+
+void igvCamara::setAlzado() {
+    setTipo(IGV_PARALELA);
+    set(igvPunto3D(0, 0, 5), igvPunto3D(0, 0, 0), igvPunto3D(0, 1, 0));
+    aplicar();
+}
+

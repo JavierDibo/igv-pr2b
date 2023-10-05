@@ -96,7 +96,6 @@ void igvInterfaz::keyboardFunc(unsigned char key, int x, int y) {
     switch (key) {
         case 'p':
         case 'P':
-            // _instancia->escena.set_ejes(!_instancia->escena.get_ejes());
             if (_instancia->camara.getTipo() == IGV_PARALELA) {
                 _instancia->camara.setTipo(IGV_PERSPECTIVA);
             } else if (_instancia->camara.getTipo() == IGV_PERSPECTIVA) {
@@ -182,21 +181,32 @@ void igvInterfaz::displayFunc() {
     int alto = _instancia->get_alto_ventana();
 
     if (_instancia->vistaCuadruple) {
-        // Vista 1
+        // Vista en perspectiva
         glViewport(0, alto / 2, ancho / 2, alto / 2);
+        glPushMatrix(); // Guarda la matriz de vista actual
         _instancia->escena.visualizar();
+        glPopMatrix(); // Restaura la matriz de vista
 
-        // Vista 2
+        // Vista en planta
         glViewport(ancho / 2, alto / 2, ancho / 2, alto / 2);
+        glPushMatrix();
+        _instancia->camara.setPlanta();
         _instancia->escena.visualizar();
+        glPopMatrix();
 
-        // Vista 3
+        // Vista en perfil
         glViewport(0, 0, ancho / 2, alto / 2);
+        glPushMatrix();
+        _instancia->camara.setPerfil();
         _instancia->escena.visualizar();
+        glPopMatrix();
 
-        // Vista 4
+        // Vista en alzado
         glViewport(ancho / 2, 0, ancho / 2, alto / 2);
+        glPushMatrix();
+        _instancia->camara.setAlzado();
         _instancia->escena.visualizar();
+        glPopMatrix();
     } else {
         glViewport(0, 0, ancho, alto);
         _instancia->escena.visualizar();

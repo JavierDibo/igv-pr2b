@@ -105,6 +105,13 @@ public:
     // de visión y la transformación de proyección
     // asociadas a los parámetros de la cámara
     void zoom(double factor); // realiza un zoom sobre la cámara
+    void setAlzado();
+
+    void setPerfil();
+
+    void setPlanta();
+
+    void setPerspectiva();
 };
 
 #endif   // __IGVCAMARA
